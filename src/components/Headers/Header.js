@@ -1,87 +1,118 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Header = () => {
-   
   return (
     <>
-        <header id="header" className="header">
-        <div className="header-main">
-          <div className="row align-items-center">
-            <div className="col-auto col-lg order-lg-2 mx-lg-auto me-auto">
-              <div className="brandLogo">
-                <div id="horizontal-navtoggle" className="animated-arrow">
-                  <span />
-                </div>
-                <a className="cursor-pointer">
-                  <img
-                    src="https://dev-mcc-digital-memory.s3.us-west-2.amazonaws.com/store_5/store/1f9e8925-557c-4f6f-8c78-b1e754611415.jpg"
-                    alt="https://dev-mcc-digital-memory.s3.us-west-2.amazonaws.com/store_5/store/1f9e8925-557c-4f6f-8c78-b1e754611415.jpg"
-                  />
+      <header id="header" className="header">
+        <div className="container">
+          <div className="align-items-center row">
+            <div className="col col-md-auto">
+              <div className="logo">
+                <a href="#">
+                  <img src="./assets/images/logo-w.svg" alt="" title="" />
                 </a>
               </div>
             </div>
-            <div className="col-auto col-lg-3 order-lg-3">
-              <div className="headerRight">
-                <div className="divChild dropdownWrap">
-                  <div className="childAct dropdownAct">
-                    <span>Account</span>
-                    <i className="bx bx-user" />
-                  </div>
-                  <div className="dropdownBox">
-                    <div className="dropdownCont">
-                      <div className="dropdownContHead d-none">
-                        <span className="title">New Customer?</span>
+            <div className="col-auto order-md-12">
+              <div className="header-right">
+                <div className="right-buttons">
+                  <a href="#" className="links-child">
+                    <i className="vm-ic vm-line-bag" />
+                  </a>
+                </div>
+                <div className="right-buttons dropdown">
+                  <a className="links-child" href="#">
+                    <i className="vm-ic vm-line-user" />
+                    <span className="label">Profile</span>
+                  </a>
+                  <div className="right-dropdown">
+                    <ul className="user-menu">
+                      <div className="profile-highlight">
+                        <img
+                          src="images/user.jpg"
+                          alt="profile-img"
+                          width={36}
+                          height={36}
+                        />
+                        <div className="details">
+                          <h5>Kenny Lee</h5>
+                          <p>Team Hallaway</p>
+                        </div>
+                      </div>
+                      <li className="user-menu__item">
                         <a
-                          className="btn btn-primary btn-xs"
+                          className="user-menu-link"
                           href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#signup"
+                          data-toggle="modal"
+                          data-target="#login"
                         >
-                          <span>Sign up</span>
+                          <i className="vm-ic vm-login" />
+                          <div>Login</div>
                         </a>
+                      </li>
+                      <li className="user-menu__item">
+                        <a className="user-menu-link" href="#">
+                          <i className="vm-ic vm-box" />
+                          <div>Orders</div>
+                        </a>
+                      </li>
+                      <li className="user-menu__item">
+                        <a className="user-menu-link" href="#">
+                          <i className="vm-ic vm-heart" />
+                          <div>Wishliast</div>
+                        </a>
+                      </li>
+                      <li className="user-menu__item">
+                        <a className="user-menu-link" href="#">
+                          <i className="vm-ic vm-phone" />
+                          <div>Contact Us</div>
+                        </a>
+                      </li>
+                      <div className="footer">
+                        <li className="user-menu__item">
+                          <a className="user-menu-link" href="#">
+                            Saved Cards
+                          </a>
+                        </li>
+                        <li className="user-menu__item">
+                          <a className="user-menu-link" href="#">
+                            Saved Address
+                          </a>
+                        </li>
+                        <li className="user-menu__item">
+                          <a className="user-menu-link" href="#">
+                            Edit Profile
+                          </a>
+                        </li>
+                        <li className="user-menu__item">
+                          <a
+                            className="user-menu-link"
+                            href="#"
+                            style={{ color: "#F44336" }}
+                          >
+                            Logout
+                          </a>
+                        </li>
                       </div>
-                      <div className="dropdownContBody">
-                        <ul className="dLinksGroup">
-                          <li>
-                            <a className="dLinks cursor-pointer">
-                              <i className="bx bx-log-in-circle" />
-                              <span>Login</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
+                    </ul>
                   </div>
                 </div>
-                <div className="divChild">
-                  <a className="childAct cursor-pointer">
-                    <span>Your Bag</span>
-                    <i className="bx bx-shopping-bag" />
-                    <div className="CartCount d-none">0</div>
-                  </a>
+              </div>
+            </div>
+            <div className="col-12 col-md order-md-1">
+              <div className="input-group search-box">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search for products, Brands and More..."
+                />
+                <div className="input-group-append">
+                  <button className="btn btn-outline-primary">
+                    <i className="bx bx-search" />
+                  </button>
                 </div>
               </div>
             </div>
-            <div className="col-12 col-lg-3 order-lg-1">
-              <div className="divChild dropdownWrap">
-                <div className="headerLeft">
-                  <div className="divChild searchBox" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="sticky-wrapper" className="horizontalMain">
-          <div className="container">
-            <nav className="horizontalMenu d-md-flex">
-              <ul className="horizontalMenu-list">
-                <li>
-                  <a href="/stores/jewelry-palace/categories/5fcd8659-5a8c-4f58-bc30-f721377b6064">
-                    Earrings
-                  </a>
-                </li>
-              </ul>
-            </nav>
           </div>
         </div>
       </header>

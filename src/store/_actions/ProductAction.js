@@ -1,4 +1,8 @@
-import { PRODUCT_SUCCESS, PRODUCT_FAIL } from "../_constants/ProductConstants";
+import {
+  PRODUCT_SUCCESS,
+  PRODUCT_FAIL,
+  PRODUCT_SET,
+} from "../_constants/ProductConstants";
 import ProductService from "../_services/ProductService";
 import { toast } from "react-toastify";
 import { logout } from "./AuthAction";
@@ -35,14 +39,9 @@ export const getProductList = (limit, skip) => (dispatch) => {
   );
 };
 
-/*
-export const categroryList = () => (dispatch) => {
+export const getCategroryList = () => (dispatch) => {
   return ProductService.getCategoryList().then(
     (response) => {
-      dispatch({
-        type: CATEGORY_SUCCESS,
-        payload: { result: response.data },
-      });
       return Promise.resolve(response.data);
     },
     (error) => {
@@ -54,12 +53,16 @@ export const categroryList = () => (dispatch) => {
         error.message ||
         error.toString();
 
-      dispatch({
-        type: CATEGORY_FAIL,
-      });
       toast.error(message);
       return Promise.reject();
     }
   );
 };
-*/
+
+export const setProduct = (response) => (dispatch) => {
+  dispatch({
+    type: PRODUCT_SET,
+    payload: response,
+  });
+  return Promise.resolve(response);
+};

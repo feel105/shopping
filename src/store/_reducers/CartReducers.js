@@ -12,7 +12,9 @@ export default function CartReducers(state = initialState, action) {
   const { type, payload } = action;
   console.log(state, "CartReducers", payload);
   //get product already added then + quantity other wise add product
-  const itemIndex = state.cartItems.findIndex((item) => item.id === payload.id);
+  const itemIndex = state.cartItems.findIndex(
+    (item) => item.id === payload?.id
+  );
   switch (type) {
     case CART_SUCCESS:
       if (itemIndex >= 0) {

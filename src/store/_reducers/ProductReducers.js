@@ -1,4 +1,8 @@
-import { PRODUCT_SUCCESS, PRODUCT_FAIL } from "../_constants/ProductConstants";
+import {
+  PRODUCT_SUCCESS,
+  PRODUCT_FAIL,
+  PRODUCT_SET,
+} from "../_constants/ProductConstants";
 
 const initialState = {};
 
@@ -18,7 +22,13 @@ export default function ProductReducers(state = initialState, action) {
         success: false,
         response: null,
       };
+    case PRODUCT_SET:
+      return {
+        ...state,
+        setProduct: payload,
+      };
     default:
       return state;
   }
+  //localStorage.setItem("product", JSON.stringify(state));
 }
