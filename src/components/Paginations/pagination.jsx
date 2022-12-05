@@ -17,7 +17,7 @@ function PaginatedItems({ data, itemsPerPage, handlePageClick }) {
               pageCount={pageCount}
               previousLabel="<"
               renderOnZeroPageCount={null}
-              containerClassName="pagination-num"
+              containerClassName="pagination pagination-borderless justify-content-center"
               pageClassName="page-item"
               pageLinkClassName="page-link"
               previousClassName="page-item"

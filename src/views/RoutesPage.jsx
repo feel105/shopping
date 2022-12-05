@@ -10,9 +10,7 @@ const PrivateRoutes = () => {
   const location = useLocation();
   const { isLoggedIn } = useSelector((state) => state.AuthReducers);
 
-  let token = localStorage.getItem("token");
-
-  return isLoggedIn && token ? (
+  return isLoggedIn ? (
     <Outlet />
   ) : (
     <Navigate to="/login" replace state={{ from: location }} />

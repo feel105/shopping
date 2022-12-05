@@ -1,6 +1,6 @@
 import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from "../_constants/AuthConstants";
 
-let user = JSON.parse(localStorage.getItem("user"));
+let user = JSON.parse(localStorage.getItem("User-info"));
 const initialState = user
   ? { isLoggedIn: true, user }
   : { isLoggedIn: false, user: null };

@@ -1,6 +1,7 @@
 import { PRODUCT_SUCCESS, PRODUCT_FAIL } from "../_constants/ProductConstants";
 import ProductService from "../_services/ProductService";
 import { toast } from "react-toastify";
+import { logout } from "./AuthAction";
 
 export const getProductList = (limit, skip) => (dispatch) => {
   return ProductService.getProductList(limit, skip).then(
@@ -25,6 +26,10 @@ export const getProductList = (limit, skip) => (dispatch) => {
         type: PRODUCT_FAIL,
       });
       toast.error(message);
+      if (error.response.status === 401) {
+        console.log(error.response.status, " ERR ");
+        dispatch(logout());
+      }
       return Promise.reject();
     }
   );
