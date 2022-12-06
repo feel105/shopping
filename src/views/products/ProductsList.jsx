@@ -53,11 +53,8 @@ export default function ProductsList() {
 
   useEffect(() => {
     getList();
-  }, [itemOffset]);
-
-  useEffect(() => {
     categoryList();
-  }, []);
+  }, [itemOffset]);
 
   return (
     <div className="container ">
@@ -92,22 +89,6 @@ export default function ProductsList() {
                     </select>
                   </div>
                 </div>
-                <div className="filter-actives">
-                  {/* <div className="f-a-child">
-                    Samsung <span className="f-a-close vm-line-close" />
-                  </div>
-                  <div className="f-a-child">
-                    Instant Geyser <span className="f-a-close vm-line-close" />
-                  </div>
-                  <div className="f-a-child">
-                    <label htmlFor="color-Blue" className="color-label">
-                      <span className="ColorSwatch Blue" />
-                      Blue
-                    </label>{" "}
-                    <span className="f-a-close vm-line-close" />
-                  </div> */}
-                </div>
-
                 <div className="grid-1 inner-product-list-grid">
                   {productData?.products?.length > 0 ? (
                     <>

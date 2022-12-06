@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -8,23 +9,23 @@ const Header = () => {
           <div className="align-items-center row">
             <div className="col col-md-auto">
               <div className="logo">
-                <a href="#">
+                <Link to="/home">
                   <img src="./assets/images/logo-w.svg" alt="" title="" />
-                </a>
+                </Link>
               </div>
             </div>
-            <div className="col-auto order-md-12">
+            {/* <div className="col-auto order-md-12">
               <div className="header-right">
                 <div className="right-buttons">
-                  <a href="#" className="links-child">
+                  <Link className="links-child">
                     <i className="vm-ic vm-line-bag" />
-                  </a>
+                  </Link>
                 </div>
                 <div className="right-buttons dropdown">
-                  <a className="links-child" href="#">
+                  <Link className="links-child">
                     <i className="vm-ic vm-line-user" />
                     <span className="label">Profile</span>
-                  </a>
+                  </Link>
                   <div className="right-dropdown">
                     <ul className="user-menu">
                       <div className="profile-highlight">
@@ -40,7 +41,7 @@ const Header = () => {
                         </div>
                       </div>
                       <li className="user-menu__item">
-                        <a
+                        <Link
                           className="user-menu-link"
                           href="#"
                           data-toggle="modal"
@@ -48,50 +49,37 @@ const Header = () => {
                         >
                           <i className="vm-ic vm-login" />
                           <div>Login</div>
-                        </a>
+                        </Link>
                       </li>
                       <li className="user-menu__item">
-                        <a className="user-menu-link" href="#">
+                        <Link className="user-menu-link">
                           <i className="vm-ic vm-box" />
                           <div>Orders</div>
-                        </a>
+                        </Link>
                       </li>
                       <li className="user-menu__item">
-                        <a className="user-menu-link" href="#">
+                        <Link className="user-menu-link">
                           <i className="vm-ic vm-heart" />
                           <div>Wishliast</div>
-                        </a>
+                        </Link>
                       </li>
                       <li className="user-menu__item">
-                        <a className="user-menu-link" href="#">
+                        <Link className="user-menu-link">
                           <i className="vm-ic vm-phone" />
                           <div>Contact Us</div>
-                        </a>
+                        </Link>
                       </li>
                       <div className="footer">
                         <li className="user-menu__item">
-                          <a className="user-menu-link" href="#">
-                            Saved Cards
-                          </a>
+                          <Link className="user-menu-link">Edit Profile</Link>
                         </li>
                         <li className="user-menu__item">
-                          <a className="user-menu-link" href="#">
-                            Saved Address
-                          </a>
-                        </li>
-                        <li className="user-menu__item">
-                          <a className="user-menu-link" href="#">
-                            Edit Profile
-                          </a>
-                        </li>
-                        <li className="user-menu__item">
-                          <a
+                          <Link
                             className="user-menu-link"
-                            href="#"
                             style={{ color: "#F44336" }}
                           >
                             Logout
-                          </a>
+                          </Link>
                         </li>
                       </div>
                     </ul>
@@ -112,7 +100,7 @@ const Header = () => {
                   </button>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </header>

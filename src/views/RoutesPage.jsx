@@ -5,7 +5,10 @@ import SignUp from "./auth/SignUp";
 import { useSelector } from "react-redux";
 import ProductsList from "./products/ProductsList";
 import ProductDetails from "./products/ProductDetails";
+import CartList from "./cart/CartList";
 import PageNotFound from "./notFound/pageNotFound";
+//import Header from "../components/Headers/Header";
+import Footer from "../components/Footers/Footer";
 
 const PrivateRoutes = () => {
   const location = useLocation();
@@ -25,7 +28,7 @@ const PrivateRoutes = () => {
 function RoutesPage() {
   return (
     <div className="App">
-      {/* {isLoading && <Loader />} */}
+      {/* {isLoading && <Loader />}  */}0
       <div className="fixed-header-fill show-md">
         <BrowserRouter>
           <Routes>
@@ -36,7 +39,7 @@ function RoutesPage() {
                 exect
                 element={<ProductDetails />}
               />
-              <Route exect path="cartDetails" element={<ProductDetails />} />
+              <Route exect path="cartDetails" element={<CartList />} />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<SignUp />} />
@@ -44,6 +47,7 @@ function RoutesPage() {
           </Routes>
         </BrowserRouter>
       </div>
+      <Footer />
     </div>
   );
 }

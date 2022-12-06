@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
+import "swiper/css/free-mode";
 import "swiper/css/navigation";
-
-// import required modules
-import { Navigation } from "swiper";
+import "swiper/css/thumbs";
+import { FreeMode, Navigation, Thumbs } from "swiper";
+import { addProductCart } from "../../store/_actions/CartAction";
 
 const ProductDetails = () => {
   const history = useNavigate();
+  const dispatch = useDispatch();
   const { id } = useParams();
   const [item, setItem] = useState(null);
-  const [swiperRef, setSwiperRef] = useState(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const ProductReducers = useSelector((state) => state.ProductReducers);
   const productData = ProductReducers?.response?.products;
@@ -31,6 +31,10 @@ const ProductDetails = () => {
     }
   }, [id]);
 
+  const addToCart = (product) => {
+    dispatch(addProductCart(product));
+  };
+
   return (
     <>
       <section className="sec-bradcrum hide-m">
@@ -41,10 +45,10 @@ const ProductDetails = () => {
                 <Link>Home</Link>
               </li>
               <li className="breadcrumb-item">
-                <Link>{item?.category}</Link>
+                <Link to={`/productList`}>{item?.category}</Link>
               </li>
               <li className="breadcrumb-item">
-                <Link>{item?.brand}</Link>
+                <Link to={`/productList`}>{item?.brand}</Link>
               </li>
               <li className="breadcrumb-item active">{item?.title}</li>
             </ol>
@@ -62,37 +66,57 @@ const ProductDetails = () => {
                     <i className="bx bxs-heart text-primary" />
                   </div>
                 </div>
-                <div className="product-display-slider owl-carousel owl-theme">
-                  <div
-                    className="item"
-                    data-thumb='<img src="images/product/product4.jpeg" />'
-                  >
-                    <a
-                      href="images/product/product4.jpeg"
-                      data-fancybox="product-display"
-                    >
-                      <img
-                        className="zoom-trigger img-trigger"
-                        src={item?.thumbnail}
-                        data-zoom="images/product/product4.jpeg"
-                      />
 
+                <div className="">
+                  <div className="item">
+                    <Link data-fancybox="product-display">
                       <Swiper
+                        style={{
+                          "--swiper-navigation-color": "#fff",
+                          "--swiper-pagination-color": "#fff",
+                        }}
+                        spaceBetween={10}
                         navigation={true}
-                        modules={[Navigation]}
+                        thumbs={{ swiper: thumbsSwiper }}
+                        modules={[FreeMode, Navigation, Thumbs]}
+                        className="mySwiper2"
+                      >
+                        {item?.images.map((val, ind) => {
+                          return (
+                            <SwiperSlide key={ind}>
+                              <img
+                                src={`${val}`}
+                                width={90}
+                                height={90}
+                                alt={val}
+                              />
+                            </SwiperSlide>
+                          );
+                        })}
+                      </Swiper>
+                      <Swiper
+                        onSwiper={setThumbsSwiper}
+                        spaceBetween={10}
+                        slidesPerView={4}
+                        freeMode={true}
+                        watchSlidesProgress={true}
+                        modules={[FreeMode, Navigation, Thumbs]}
                         className="mySwiper"
                       >
-                        <SwiperSlide>Slide 1</SwiperSlide>
-                        <SwiperSlide>Slide 2</SwiperSlide>
-                        <SwiperSlide>Slide 3</SwiperSlide>
-                        <SwiperSlide>Slide 4</SwiperSlide>
-                        <SwiperSlide>Slide 5</SwiperSlide>
-                        <SwiperSlide>Slide 6</SwiperSlide>
-                        <SwiperSlide>Slide 7</SwiperSlide>
-                        <SwiperSlide>Slide 8</SwiperSlide>
-                        <SwiperSlide>Slide 9</SwiperSlide>
+                        {item?.images.map((val, ind) => {
+                          return (
+                            <SwiperSlide key={ind}>
+                              <img
+                                src={`${val}`}
+                                width={90}
+                                height={90}
+                                alt={val}
+                              />
+                            </SwiperSlide>
+                          );
+                        })}
                       </Swiper>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -110,7 +134,7 @@ const ProductDetails = () => {
               </div>
               <div className="pro-price border-bottom py-1">
                 <span className="old-price text-muted d-block font14">
-                  <del>₹89,999</del> (Inclusive of all taxes)
+                  <b>{item?.discountPercentage}</b>% (discount)
                 </span>
                 <span className="normal-price h3 text-primary">
                   ₹{item?.price}
@@ -119,24 +143,26 @@ const ProductDetails = () => {
               <div className="product-detail-child view2">
                 <div className="product-detail-child-label text-muted">QTY</div>
                 <div className="pro-detail-child-detail">
-                  <div className="quantity q-sm clearfix">
-                    <input
-                      type="number"
-                      min={1}
-                      max={9}
-                      step={1}
-                      defaultValue={1}
-                    />
-                  </div>
+                  <div className="quantity q-sm clearfix">1</div>
                 </div>
               </div>
 
-              <div className="product-detail-child hide-m">
+              <div className="product-detail-child">
                 <div className="d-flex buy-btn">
-                  <button className="btn btn-dark btn-lg">
-                    <i className="bx bxs-shopping-bag mr-2" />
+                  <button
+                    onClick={() => addToCart(item)}
+                    className="btn btn-dark btn-lg"
+                  >
+                    <i className="fa fa-shopping-bag mr-2" />
                     Add to cart
                   </button>
+                  <Link
+                    to="/cartDetails"
+                    className="btn btn-primary btn-lg ml-2"
+                  >
+                    <i className="fa fa-shopping-bag mr-2" />
+                    Buy Now
+                  </Link>
                 </div>
               </div>
 
@@ -148,19 +174,7 @@ const ProductDetails = () => {
                   <ul className="ul-list view1">
                     <li>
                       <i className="icon" />
-                      64 GB ROM
-                    </li>
-                    <li>
-                      <i className="icon" />
-                      14.73 cm (5.8 inch) Super Retina XDR Display
-                    </li>
-                    <li>
-                      <i className="icon" />
-                      12MP + 12MP + 12MP | 12MP Front Camera
-                    </li>
-                    <li>
-                      <i className="icon" />
-                      A13 Bionic Chip Processor
+                      {item?.description}
                     </li>
                   </ul>
                 </div>
@@ -179,49 +193,8 @@ const ProductDetails = () => {
               <div className="list-view2 font14 border-top mb-2">
                 <div className="h5 title">Specifications</div>
                 <div className="child">
-                  <div className="label text-muted">In The Box</div>
-                  <div className="desc">
-                    Handset, EarPods with Lightning Connector, USB-C to
-                    Lightning Cable, 18W USB-C Power Adapter, Documentation
-                  </div>
-                </div>
-                <div className="child">
-                  <div className="label text-muted">Model Number</div>
-                  <div className="desc">MWC62HN/A</div>
-                </div>
-                <div className="child">
-                  <div className="label text-muted">Model Name</div>
-                  <div className="desc">iPhone 11 Pro</div>
-                </div>
-                <div className="child">
-                  <div className="label text-muted">Color</div>
-                  <div className="desc">Midnight Green</div>
-                </div>
-                <div className="child">
-                  <div className="label text-muted">Browse Type</div>
-                  <div className="desc">Smartphones</div>
-                </div>
-                <div className="child">
-                  <div className="label text-muted">SIM Type</div>
-                  <div className="desc">Dual Sim</div>
-                </div>
-                <div className="child">
-                  <div className="label text-muted">Hybrid Sim Slot</div>
-                  <div className="desc">No</div>
-                </div>
-                <div className="child">
-                  <div className="label text-muted">Touchscreen</div>
-                  <div className="desc">Yes</div>
-                </div>
-                <div className="child">
-                  <div className="label text-muted">OTG Compatible</div>
-                  <div className="desc">No</div>
-                </div>
-                <div className="child">
-                  <div className="label text-muted">SAR Value</div>
-                  <div className="desc">
-                    1.6 W/kg (over 1 g) SAR Limit, Head: 1.18, Body: 1.16
-                  </div>
+                  <div className="label text-muted">{item?.category}</div>
+                  <div className="desc">{item?.brand}</div>
                 </div>
               </div>
             </div>
@@ -231,5 +204,4 @@ const ProductDetails = () => {
     </>
   );
 };
-
 export default ProductDetails;

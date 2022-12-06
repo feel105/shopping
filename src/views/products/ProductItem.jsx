@@ -1,11 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
 const ProductItem = ({ data }) => {
   console.log(data, "productsData");
-  const dispatch = useDispatch();
-
   return (
     <>
       <div className="grid-child">
@@ -19,10 +16,10 @@ const ProductItem = ({ data }) => {
           <Link className="  product-img  " to={`productDetails/${data.id}`}>
             <div className="product-img-f" />
             <img
-              src={`${data.thumbnail}`}
+              src={`${data?.thumbnail}`}
               width={90}
               height={90}
-              alt={data.title}
+              alt={data?.title}
             />
           </Link>
 

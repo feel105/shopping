@@ -4,8 +4,8 @@ const initialState = {
   cartItems: localStorage.getItem("cartItems")
     ? JSON.parse(localStorage.getItem("cartItems"))
     : [],
-  cartTotalQuantity: 0,
-  cartTotalAmount: 0,
+  cartTotalQuantity: 0, //calculate total quantity when product add
+  cartTotalAmount: 0, //calaculate amount of all product state
 };
 
 export default function CartReducers(state = initialState, action) {
