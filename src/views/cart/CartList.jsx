@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
@@ -42,11 +42,10 @@ export default function CartList() {
               </>
             ) : (
               <div>
-                {" "}
                 No Cart Item found <br />
                 <Link to="/productList" className="btn btn-min btn-dark">
                   Shop more
-                </Link>{" "}
+                </Link>
               </div>
             )}
           </div>
@@ -70,7 +69,7 @@ export default function CartList() {
                 <h3 className="text-primary fw7">Total: ₹1,59,998</h3>
                 <p className="text-muted font14">Not including shipping fee</p>
               </div>
-              <Link className="btn btn-primary pay-btn">
+              <Link className="btn btn-primary">
                 <span>Place Order</span>
               </Link>
             </div>

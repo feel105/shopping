@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { removeProductCart } from "../../store/_actions/CartAction";
 
 const CartItem = ({ data }) => {

@@ -20,7 +20,7 @@ const ProductDetails = () => {
   const ProductReducers = useSelector((state) => state.ProductReducers);
   const productData = ProductReducers?.response?.products;
   console.log(productData, "productData11");
-  useEffect(() => {
+  const productLoad = () => {
     if (productData === undefined) {
       console.log(productData, "productData222");
       history("/productList");
@@ -29,6 +29,10 @@ const ProductDetails = () => {
       console.log(product, "product");
       setItem(product);
     }
+  };
+
+  useEffect(() => {
+    productLoad();
   }, [id]);
 
   const addToCart = (product) => {

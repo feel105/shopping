@@ -6,8 +6,9 @@ import { useSelector } from "react-redux";
 import ProductsList from "./products/ProductsList";
 import ProductDetails from "./products/ProductDetails";
 import CartList from "./cart/CartList";
+import Profile from "./profile/Profile";
 import PageNotFound from "./notFound/pageNotFound";
-//import Header from "../components/Headers/Header";
+import Header from "../components/Headers/Header";
 import Footer from "../components/Footers/Footer";
 
 const PrivateRoutes = () => {
@@ -28,9 +29,11 @@ const PrivateRoutes = () => {
 function RoutesPage() {
   return (
     <div className="App">
-      {/* {isLoading && <Loader />}  */}0
+      {/* {isLoading && <Loader />}  <Header /> */}
+
       <div className="fixed-header-fill show-md">
         <BrowserRouter>
+          <Header />
           <Routes>
             <Route path="/" element={<PrivateRoutes />}>
               <Route path="productList" exect element={<ProductsList />} />
@@ -40,14 +43,15 @@ function RoutesPage() {
                 element={<ProductDetails />}
               />
               <Route exect path="cartDetails" element={<CartList />} />
+              <Route exect path="profile" element={<Profile />} />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<SignUp />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
       </div>
-      <Footer />
     </div>
   );
 }

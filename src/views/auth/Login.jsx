@@ -51,81 +51,102 @@ const Login = () => {
   };
   return (
     <>
-      <div className="container login_page">
-        <div className="row">
-          <div className="col-sm-6 form-section">
-            <div className="login-wrapper">
-              <div className="form_outer2">
-                <Formik
-                  initialValues={initialValue}
-                  validationSchema={loginSchema}
-                  onSubmit={handleSubmit}
-                  enableReinitialize={true}
-                >
-                  {({ errors, touched }) => (
-                    <Form>
-                      <h3>Login</h3>
-                      <p>Enter your username and password.</p>
-                      <div className="form-group">
-                        <label className="username">Username</label>
-                        <Field
-                          name="username"
-                          placeholder="Enter Name"
-                          className={`form-control border-0 border-bottom bg-transparent ${
-                            touched.username && errors.username
-                              ? "is-invalid"
-                              : ""
-                          }`}
-                        />
-                        <ErrorMessage
-                          component="div"
-                          name="username"
-                          className="invalid-feedback"
-                        />
-                        <i className="fa fa-user" />
-                      </div>
-                      <div className="form-group mb-3">
-                        <label className="password">Password</label>
-                        <Field
-                          type="password"
-                          name="password"
-                          placeholder="Enter Password"
-                          className={`form-control border-0 border-bottom bg-transparent ${
-                            touched.password && errors.password
-                              ? "is-invalid"
-                              : ""
-                          }`}
-                        />
-                        <ErrorMessage
-                          component="div"
-                          name="password"
-                          className="invalid-feedback"
-                        />
-                        <i className="fa fa-lock" />
-                      </div>
-                      <Link className="signup-link float-right" to="/register">
-                        register
-                      </Link>
-                      {loading ? (
-                        <button
-                          id="login"
-                          disabled={true}
-                          className="btn btn-block login-btn"
-                        >
-                          SIGNING IN..
-                        </button>
-                      ) : (
-                        <button
-                          id="login"
-                          type="submit"
-                          className="btn btn-block login-btn"
-                        >
-                          SIGN IN
-                        </button>
-                      )}
-                    </Form>
-                  )}
-                </Formik>
+      <div className="div-center">
+        <div className="container">
+          <div className="row mx-auto main-content bg-success text-center">
+            <div className="col-md-4 text-center company__info">
+              <span className="company__logo">
+                <h2>
+                  <span className="fa fa-cart-plus" />
+                </h2>
+              </span>
+              <h4 className="company_title">Shop</h4>
+            </div>
+            <div className="col-md-8 col-xs-12 col-sm-12 login_form ">
+              <div className="container-fluid">
+                <div className="row">
+                  <h2>Log In</h2>
+                </div>
+                <div className="row mb-2">
+                  <Formik
+                    initialValues={initialValue}
+                    validationSchema={loginSchema}
+                    onSubmit={handleSubmit}
+                    enableReinitialize={true}
+                  >
+                    {({ errors, touched }) => (
+                      <Form>
+                        <p>Enter your username and password.</p>
+                        <div className="form-group mb-5">
+                          <Field
+                            name="username"
+                            placeholder="Enter Username"
+                            className={`form-control border-0 border-bottom bg-transparent ${
+                              touched.username && errors.username
+                                ? "is-invalid"
+                                : ""
+                            }`}
+                          />
+                          <ErrorMessage
+                            component="div"
+                            name="username"
+                            className="invalid-feedback"
+                          />
+                        </div>
+                        <div className="form-group mb-5">
+                          <Field
+                            type="password"
+                            name="password"
+                            placeholder="Enter Password"
+                            className={`form-control border-0 border-bottom bg-transparent ${
+                              touched.password && errors.password
+                                ? "is-invalid"
+                                : ""
+                            }`}
+                          />
+                          <ErrorMessage
+                            component="div"
+                            name="password"
+                            className="invalid-feedback"
+                          />
+                        </div>
+                        {loading ? (
+                          <button
+                            id="login"
+                            disabled={true}
+                            className="btn btn-primary"
+                          >
+                            SIGNING IN..
+                          </button>
+                        ) : (
+                          <button
+                            id="login"
+                            type="submit"
+                            className="btn btn-primary"
+                          >
+                            SIGN IN
+                          </button>
+                        )}
+                      </Form>
+                    )}
+                  </Formik>
+                </div>
+                <div className="row mb-2">
+                  <p>
+                    Don't have an account?
+                    <Link className="signup-link float-right" to="/register">
+                      Register Here
+                    </Link>
+                  </p>
+                </div>
+                <div className="mb-2 footer-social-icon">
+                  <Link>
+                    <i className="fa fa-facebook-f facebook-bg" />
+                  </Link>
+                  <Link>
+                    <i className="fa fa-google google-bg" />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

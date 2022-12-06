@@ -1,108 +1,84 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const { isLoggedIn } = useSelector((state) => state.AuthReducers);
   return (
     <>
-      <header id="header" className="header">
-        <div className="container">
-          <div className="align-items-center row">
-            <div className="col col-md-auto">
-              <div className="logo">
-                <Link to="/home">
-                  <img src="./assets/images/logo-w.svg" alt="" title="" />
-                </Link>
-              </div>
+      <header>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+          <div className="container-fluid">
+            <div className="navbar-brand">
+              <img
+                src={require("../../assets/images/logo.png")}
+                className="img-fluid"
+                width={55}
+                height={55}
+                alt="logo"
+              />
             </div>
-            {/* <div className="col-auto order-md-12">
-              <div className="header-right">
-                <div className="right-buttons">
-                  <Link className="links-child">
-                    <i className="vm-ic vm-line-bag" />
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon" />
+            </button>
+
+            <div
+              className="collapse navbar-collapse"
+              id="navbarSupportedContent"
+            >
+              <ul className="navbar-nav mr-auto">
+                <li className="nav-item active">
+                  <Link className="nav-link">Home</Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/productList" className="nav-link">
+                    Products
                   </Link>
-                </div>
-                <div className="right-buttons dropdown">
-                  <Link className="links-child">
-                    <i className="vm-ic vm-line-user" />
-                    <span className="label">Profile</span>
-                  </Link>
-                  <div className="right-dropdown">
-                    <ul className="user-menu">
-                      <div className="profile-highlight">
-                        <img
-                          src="images/user.jpg"
-                          alt="profile-img"
-                          width={36}
-                          height={36}
-                        />
-                        <div className="details">
-                          <h5>Kenny Lee</h5>
-                          <p>Team Hallaway</p>
-                        </div>
-                      </div>
-                      <li className="user-menu__item">
-                        <Link
-                          className="user-menu-link"
-                          href="#"
-                          data-toggle="modal"
-                          data-target="#login"
-                        >
-                          <i className="vm-ic vm-login" />
-                          <div>Login</div>
-                        </Link>
-                      </li>
-                      <li className="user-menu__item">
-                        <Link className="user-menu-link">
-                          <i className="vm-ic vm-box" />
-                          <div>Orders</div>
-                        </Link>
-                      </li>
-                      <li className="user-menu__item">
-                        <Link className="user-menu-link">
-                          <i className="vm-ic vm-heart" />
-                          <div>Wishliast</div>
-                        </Link>
-                      </li>
-                      <li className="user-menu__item">
-                        <Link className="user-menu-link">
-                          <i className="vm-ic vm-phone" />
-                          <div>Contact Us</div>
-                        </Link>
-                      </li>
-                      <div className="footer">
-                        <li className="user-menu__item">
-                          <Link className="user-menu-link">Edit Profile</Link>
-                        </li>
-                        <li className="user-menu__item">
-                          <Link
-                            className="user-menu-link"
-                            style={{ color: "#F44336" }}
-                          >
-                            Logout
-                          </Link>
-                        </li>
-                      </div>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+                </li>
+              </ul>
             </div>
-            <div className="col-12 col-md order-md-1">
-              <div className="input-group search-box">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Search for products, Brands and More..."
-                />
-                <div className="input-group-append">
-                  <button className="btn btn-outline-primary">
-                    <i className="bx bx-search" />
-                  </button>
-                </div>
-              </div>
-            </div> */}
+            <div
+              className="collapse navbar-collapse"
+              id="navbarSupportedContent"
+            >
+              <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                {isLoggedIn ? (
+                  <>
+                    <li>
+                      <Link to="/profile" className="display-6 ml-2 text-white">
+                        <i className="fa fa-user" />
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/cartDetails"
+                        className="display-6 ml-2 text-white"
+                      >
+                        <i className="fa fa-shopping-cart" />
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <Link to="/login" className="nav-link">
+                        Login
+                      </Link>
+                    </li>
+                  </>
+                )}
+              </ul>
+            </div>
           </div>
-        </div>
+        </nav>
       </header>
     </>
   );
