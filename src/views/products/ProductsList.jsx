@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
@@ -6,7 +7,6 @@ import {
 } from "../../store/_actions/ProductAction";
 import PaginatedItems from "../../components/Paginations/pagination";
 import ProductItem from "./ProductItem";
-//import { useSelector } from "react-redux";
 
 export default function ProductsList() {
   const dispatch = useDispatch();
@@ -18,8 +18,6 @@ export default function ProductsList() {
     products: [],
   });
   const [categoryData, setCategory] = useState([]);
-  //const ProductReducers = useSelector((state) => state.ProductReducers);
-
   const [itemOffset, setItemOffset] = useState(0);
 
   const handlePageClick = (event) => {
@@ -28,27 +26,19 @@ export default function ProductsList() {
   };
 
   const getList = () => {
-    //dispatch(setLoading(true));
     dispatch(getProductList(productData.limit, itemOffset))
       .then((response) => {
         setProducts(response);
-        //dispatch(setLoading(false));
       })
-      .catch(() => {
-        // dispatch(setLoading(false));
-      });
+      .catch(() => {});
   };
 
   const categoryList = () => {
-    //dispatch(setLoading(true));
     dispatch(getCategroryList())
       .then((response) => {
         setCategory(response);
-        //dispatch(setLoading(false));
       })
-      .catch(() => {
-        // dispatch(setLoading(false));
-      });
+      .catch(() => {});
   };
 
   useEffect(() => {

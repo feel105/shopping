@@ -14,4 +14,5 @@ const register = () => {
   return axios.post(API_URL + `auth/register`, null);
 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default { login, logout, register };

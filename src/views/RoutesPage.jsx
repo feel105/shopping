@@ -1,12 +1,12 @@
 import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom";
 import { Navigate, Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Login from "./auth/Login";
 import SignUp from "./auth/SignUp";
-import { useSelector } from "react-redux";
+import Profile from "./profile/Profile";
 import ProductsList from "./products/ProductsList";
 import ProductDetails from "./products/ProductDetails";
 import CartList from "./cart/CartList";
-import Profile from "./profile/Profile";
 import PageNotFound from "./notFound/pageNotFound";
 import Header from "../components/Headers/Header";
 import Footer from "../components/Footers/Footer";

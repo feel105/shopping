@@ -20,7 +20,8 @@ const ProductDetails = () => {
   const ProductReducers = useSelector((state) => state.ProductReducers);
   const productData = ProductReducers?.response?.products;
   console.log(productData, "productData11");
-  const productLoad = () => {
+
+  useEffect(() => {
     if (productData === undefined) {
       console.log(productData, "productData222");
       history("/productList");
@@ -29,10 +30,7 @@ const ProductDetails = () => {
       console.log(product, "product");
       setItem(product);
     }
-  };
-
-  useEffect(() => {
-    productLoad();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const addToCart = (product) => {
